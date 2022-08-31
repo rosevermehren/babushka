@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BABUSHKA</title>
+    <style>
+      main {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+      }
+
+      article {
+        border: 2px solid black;
+        margin: 1rem;
+        padding: 0.5rem;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      nav {
+        text-align: center;
+      }
+
+      .valgt {
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Alle</h1>
+    </header>
+    <nav>
+      <button data-kategori="alle" class="valgt">Alle</button>
+      <button data-kategori="hovedretter">Hovedretter</button>
+      <button data-kategori="forretter">Forretter</button>
+      <button data-kategori="sideorders">Side Orders</button>
+      <button data-kategori="desserter">Desserter</button>
+      <button data-kategori="drikkevarer">Drikkevarer</button>
+    </nav>
+    <main id="holder"></main>
+    <template>
+      <article>
+        <h2 class="navn"></h2>
+        <img src="" alt="" />
+        <p class="kortbeskrivelse"></p>
+        <p class="oprindelsesregion"></p>
+        <p class="pris"></p>
+      </article>
+    </template>
+  </body>
+</html>

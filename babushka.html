@@ -54,5 +54,57 @@
         <p class="pris"></p>
       </article>
     </template>
+    <script>
+      const header = document.querySelector("header h1");
+      const endpoint = "https://babushka-dd8a.restdb.io/rest/menu";
+      const option = {
+        headers: {
+          "x-apikey": "600ec2fb1346a1524ff12de4",
+        },
+      };
+
+      document.addEventListener("DOMContentLoaded", start);
+      let retter;
+
+      let filter = "alle";
+      function start() {
+        const filterKnapper = document.querySelectorAll("nav button");
+        filterKnapper.forEach((knap) => knap.addEventListener("click", filtrerRetter));
+        hentData();
+      }
+
+      function filtrerRetter() {
+        filter = this.dataset.kategori;
+        document.querySelector(".valgt").classList.remove("valgt");
+        this.classList.add("valgt");
+
+        visretter();
+        header.textContent = this.textContent;
+      }
+
+      async function hentData() {
+        const response = await fetch(endpoint, option);
+        retter = await response.json();
+        console.log("retter", retter);
+        visretter();
+      }
+
+      function visretter() {
+        const holder = document.querySelector("#holder");
+        const skabelon = document.querySelector("template").content;
+        holder.textContent = "";
+        retter.forEach((ret) => {
+          if (filter == ret.kategori || filter == "alle") {
+            const klon = skabelon.cloneNode(true);
+            klon.querySelector(".navn").textContent = ret.navn;
+            klon.querySelector("img").src = "billeder/" + ret.billede;
+            klon.querySelector(".kortbeskrivelse").textContent = ret.kortbeskrivelse;
+            klon.querySelector(".oprindelsesregion").textContent = ret.oprindelsesregion;
+            klon.querySelector(".pris").textContent = ret.pris + " DKK";
+            holder.appendChild(klon);
+          }
+        });
+      }
+    </script>
   </body>
 </html>

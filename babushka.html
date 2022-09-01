@@ -29,6 +29,21 @@
       .valgt {
         background-color: red;
       }
+      /* #popup {
+        width: 100vw;
+        display: flex;
+        margin: 4rem auto;
+        padding: 12px;
+        background-color: black;
+      } */
+      #luk {
+        position: sticky;
+        padding: 0,5em;
+        font-size: 1.7em;
+        font-weight: bolder;
+        color: red;
+        cursor: pointer;
+      }
     </style>
   </head>
 
@@ -46,13 +61,16 @@
     </nav>
     <main id="holder"></main>
     <template>
-      <article>
-        <h2 class="navn"></h2>
-        <img src="" alt="" />
-        <p class="kortbeskrivelse"></p>
-        <p class="oprindelsesregion"></p>
-        <p class="pris"></p>
-      </article>
+      <section id="popup">
+        <div id="luk">&#x2715</div>
+        <article>
+          <h2 class="navn"></h2>
+          <img src="" alt="" />
+          <p class="kortbeskrivelse"></p>
+          <p class="oprindelsesregion"></p>
+          <p class="pris"></p>
+        </article>
+      </section>
     </template>
 
     <script>
@@ -72,19 +90,19 @@
       const main = document.querySelector("main");
       const template = document.querySelector("template").content;
 
-      //   function vis(json) {
-      //     console.log(json);
-      //     json.forEach((ret) => {
-      //       const klon = template.cloneNode(true);
-      //       klon.querySelector(".navn").textContent = ret.navn;
-      //       klon.querySelector("img").src = "medium/" + ret.billede;
-      //       klon.querySelector("img").alt = ret.billede;
-      //       klon.querySelector(".kortbeskrivelse").textContent.ret.kortbeskrivelse;
-      //       klon.querySelector(".oprindelsesregion").textContent.ret.oprindelsesregion;
-      //       klon.querySelector(".pris").textContent.ret.pris;
-      //       main.appendChild(klon);
-      //     });
-      //   }
+        function vis(json) {
+          console.log(json);
+          json.forEach((ret) => {
+            const klon = template.cloneNode(true);
+            klon.querySelector(".navn").textContent = ret.navn;
+            klon.querySelector("img").src = "medium/" + ret.billednavn + "-md.jpg";
+            klon.querySelector("img").alt = ret.billede;
+            klon.querySelector(".kortbeskrivelse").textContent.ret.kortbeskrivelse;
+            klon.querySelector(".oprindelsesregion").textContent.ret.oprindelsesregion;
+            klon.querySelector(".pris").textContent.ret.pris;
+            main.appendChild(klon);
+          });
+        }
       document.addEventListener("DOMContentLoaded", start);
       let retter;
 
@@ -127,6 +145,30 @@
           }
         });
       }
+    //   function visretter() {
+    //     document.querySelector("h2").textContent = filter;
+    //     json.forEach((ret) => {
+    //       if (filter == "alle" || filter == ret.kortbeskrivelse) {
+    //         const klon = template.cloneNode(true);
+    //         klon.querySelector("img").src = "medium/" + ret.billednavn + "-md.jpg";
+    //         klon.querySelector(".navn").textContent = ret.navn;
+    //         klon.querySelector("article").querySelector("click", () => visDetaljer(ret));
+    //         main.appendChild(klon);
+    //       }
+    //     });
+    //   }
+    //   function visDetaljer(ret) {
+    //     console.log(ret);
+    //   }
+    //   function visDetaljer(ret) {
+    //     console.log(ret);
+    //     popup.style.display = "block";
+    //     popup.querySelector("img").src = "medium/" + ret.billednavn + "-md.jpg";
+    //     popup.querySelector("h2").textContent = ret.navn + " " + ret.kortbeskrivelse;
+    //     popup.querySelector(".oprindelsesregion").textContent = ret.oprindelsesregion;
+    //     popup.querySelector(".pris").textContent = ret.pris;
+    //   }
+      document.querySelector("#luk").addEventListener("click", (popup.style.display = "none"));
     </script>
   </body>
 </html>

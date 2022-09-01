@@ -54,6 +54,7 @@
         <p class="pris"></p>
       </article>
     </template>
+
     <script>
       const header = document.querySelector("header h1");
       const endpoint = "https://babushka-dd8a.restdb.io/rest/menu";
@@ -63,6 +64,27 @@
         },
       };
 
+      async function hentData() {
+        const resspons = await fetch(url, options);
+        const json = await resspons.json();
+        vis(json);
+      }
+      const main = document.querySelector("main");
+      const template = document.querySelector("template").content;
+
+      //   function vis(json) {
+      //     console.log(json);
+      //     json.forEach((ret) => {
+      //       const klon = template.cloneNode(true);
+      //       klon.querySelector(".navn").textContent = ret.navn;
+      //       klon.querySelector("img").src = "medium/" + ret.billede;
+      //       klon.querySelector("img").alt = ret.billede;
+      //       klon.querySelector(".kortbeskrivelse").textContent.ret.kortbeskrivelse;
+      //       klon.querySelector(".oprindelsesregion").textContent.ret.oprindelsesregion;
+      //       klon.querySelector(".pris").textContent.ret.pris;
+      //       main.appendChild(klon);
+      //     });
+      //   }
       document.addEventListener("DOMContentLoaded", start);
       let retter;
 
@@ -97,7 +119,7 @@
           if (filter == ret.kategori || filter == "alle") {
             const klon = skabelon.cloneNode(true);
             klon.querySelector(".navn").textContent = ret.navn;
-            klon.querySelector("img").src = "billeder/" + ret.billede;
+            klon.querySelector("img").src = "medium/" + ret.billednavn + "-md.jpg";
             klon.querySelector(".kortbeskrivelse").textContent = ret.kortbeskrivelse;
             klon.querySelector(".oprindelsesregion").textContent = ret.oprindelsesregion;
             klon.querySelector(".pris").textContent = ret.pris + " DKK";
